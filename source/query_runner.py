@@ -26,3 +26,9 @@ def run_query(filename: str, params: dict = None) -> pd.DataFrame:  # type:ignor
     with get_engine().connect() as conn:
         result = pd.read_sql(text(sql), conn, params=params)
     return result
+
+
+def run_action(filename: str, params: dict = None):  # type:ignore
+    sql = load_sql(filename)
+    with get_engine().connect() as conn:
+        conn.execute(text(sql), params or {})
