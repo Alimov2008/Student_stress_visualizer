@@ -10,5 +10,6 @@ dependencies = [
     "python-dotenv>=1.1.1",
     "rich>=14.1.0",
     "sqlalchemy>=2.0.43",
+    "streamlit>=1.48.1",
     "types-psycopg2>=2.9.21.20250809",
 ]
