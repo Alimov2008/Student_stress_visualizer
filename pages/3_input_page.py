@@ -36,3 +36,24 @@ with col2:
     )
     bad_habits = st.selectbox("Bad Habits", ["Yes", "No", "Prefer not to say"])
     study_env = st.selectbox("Study Environment", ["Disrupted", "Noisy", "Peaceful"])
+
+date = st.date_input("Select date")
+d_time = st.time_input("Select time")
+timestamp = f"{date} {d_time}"
+
+if st.button("Submit Record", type="primary"):
+    params = {
+        "timestamp": timestamp,
+        "academic_stage": academic_stage,
+        "peer_pressure": peer_pressure,
+        "home_academic_pressure": home_pressure,
+        "study_environment": study_env,
+        "coping_strategy": coping_strategy,
+        "bad_habits": bad_habits,
+        "academic_competition": competition,
+        "stress_index": stress_index,
+    }
+    run_action(
+        "insert_record.sql",
+    )
+    st.success("✅ Record successfully added to the database!")
