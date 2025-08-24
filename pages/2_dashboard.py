@@ -31,3 +31,33 @@ fig_dist = px.bar(
     df_dist, x="stress_index", y="count", title="distribution of tress Index Ratings"
 )
 st.plotly_chart(fig_dist, use_container_width=True)
+
+df_pressure = run_query("stress_vs_pressure.sql")
+fig_scatter = px.scatter(
+    df_pressure,
+    x="peer_pressure",
+    y="home_academic_pressure",
+    size="stress_index",
+    color="stress_index",
+    title="Peer Pressure vs Home Academic Pressure vs Stress Index",
+)
+st.plotly_chart(fig_scatter, use_container_width=True)
+
+df_coping = run_query("coping_strategy_counts.sql")
+fig_coping = px.pie(
+    df_coping,
+    values="count",
+    names="coping_strategy",
+    title="Coping Strategies Distribution",
+)
+st.plotly_chart(fig_coping, use_container_width=True)
+
+df_habits = run_query("bad_habits_comparison.sql")
+fig_habits = px.bar(
+    df_habits,
+    x="bad_habits",
+    y="avg_stress",
+    color="bad_habits",
+    title="Average Stress Index by Bad Habits",
+)
+st.plotly_chart(fig_habits, use_container_width=True)
