@@ -37,9 +37,9 @@ with col2:
     bad_habits = st.selectbox("Bad Habits", ["Yes", "No", "Prefer not to say"])
     study_env = st.selectbox("Study Environment", ["Disrupted", "Noisy", "Peaceful"])
 
-date = st.date_input("Select date")
+y_date = st.date_input("Select date")
 d_time = st.time_input("Select time")
-timestamp = f"{date} {d_time}"
+timestamp = f"{y_date} {d_time}"
 
 if st.button("Submit Record", type="primary"):
     params = {
@@ -53,7 +53,5 @@ if st.button("Submit Record", type="primary"):
         "academic_competition": competition,
         "stress_index": stress_index,
     }
-    run_action(
-        "insert_record.sql",
-    )
+    run_action("insert_record.sql", params)
     st.success("✅ Record successfully added to the database!")
