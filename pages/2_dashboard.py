@@ -153,6 +153,3 @@ with tab4:
         showscale=True,
     )
     st.plotly_chart(fig_heat, use_container_width=True)
-
-    st.markdown("---")
-    st.caption("Dashboard powered by Streamlit + Plotly + PostgreSQL")
