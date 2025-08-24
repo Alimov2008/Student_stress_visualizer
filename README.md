@@ -41,7 +41,7 @@ Stress trend visualization over time
 
 Summary of coping strategies & habits
 
-'''
+<pre>
 
 📂 STUDENT-STRESS-VISUALIZER/
 │── 📄 app.py               # Main Streamlit entry point (multi-page setup)
@@ -74,7 +74,7 @@ Summary of coping strategies & habits
 │── 📄 pyproject.toml        # Python dependencies
 │── 📄 uv.lock  # UV generated python dependencies
 
-'''
+</pre>
 
 🛠️ Tech Stack
 
