@@ -1,6 +1,7 @@
 import os
 import sys
 
+import plotly.express as px  # type:ignore
 import streamlit as st
 from rich.traceback import install
 
@@ -10,16 +11,23 @@ from source.query_runner import run_query
 
 install()
 
-st.title("Academic Stress Data Explorer")
+st.set_page_config(page_title="Stress Dashboard", page_icon="📊", layout="wide")
 
-st.header("Stress Levels by Academic Stage")
+st.title("📊 Academic Stress Dashboard")
+st.markdown("Explore patterns and insights from student stress data.")
+
 df_stage = run_query("avg_stress_by_stage.sql")
-st.dataframe(df_stage)
+fig_stage = px.bar(
+    df_stage,
+    x="academic_stage",
+    y="avg_stress",
+    color="avg_stress",
+    title="Average Stress Index by Academic Stage",
+)
+st.plotly_chart(fig_stage, use_container_width=True)
 
-st.header("Stress vs Study Environment")
-df_env = run_query("avg_stress_by_environment.sql")
-st.bar_chart(df_env.set_index("study_environment")["avg_stress"])
-
-st.header("Stress Distribution")
-df_dist = run_query("stress_distribution.sql")
-st.bar_chart(df_dist.set_index("stress_index")["student_count"])
+df_dist = run_query("distribution_stress_index.sql")
+fig_dist = px.bar(
+    df_dist, x="stress_index", y="count", title="distribution of tress Index Ratings"
+)
+st.plotly_chart(fig_dist, use_container_width=True)
