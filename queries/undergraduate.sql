@@ -1,0 +1,1 @@
+SELECT * FROM stress_data WHERE academic_stage = 'undergraduate'
